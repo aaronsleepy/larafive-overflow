@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Laracasts\Flash\FlashServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->register(FlashServiceProvider::class);
+        $this->app->alias('Flash', 'Laracasts\Flash\Flash::class');
     }
 }
