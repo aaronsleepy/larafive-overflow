@@ -6,6 +6,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class SessionsController extends Controller
 {
@@ -14,7 +15,8 @@ class SessionsController extends Controller
         $this->addAuthorization();
     }
 
-    protected function addAuthorization() {
+    protected function addAuthorization()
+    {
         $this->middleware('guest', [
             'except' => 'destroy'
         ]);
@@ -32,7 +34,7 @@ class SessionsController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate([
+        $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required|min:6',
         ]);
@@ -49,5 +51,11 @@ class SessionsController extends Controller
         }
 
         return redirect()->intended('home');
+    }
+
+    public function destroy()
+    {
+        auth()->logout();
+        return redirect('home');
     }
 }
