@@ -34,3 +34,4 @@ Route::get('/auth/confirm/{code}', [
     'as' => 'users.confirm',
     'uses' => 'UsersController@confirm'
 ]);
+
