@@ -7,6 +7,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class UsersController extends Controller
 {
@@ -32,9 +33,10 @@ class UsersController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
+            'confirm_code' => str_random(60),
         ]);
 
-        auth()->login($user);
+        (new ConsoleOutput())->writeln(route('users.confirm', $user->confirm_code));
 
         return redirect('home');
     }

@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password',
+        'confirm_code', 'activated',
     ];
 
     /**
@@ -28,5 +29,15 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
+        'confirm_code',
+    ];
+
+    /**
+     * 데이터베이스 타입을 모델 타입으로 자동 캐스팅한다.
+     *
+     * @var string[]
+     */
+    protected $casts = [
+        'activated' => 'boolean',
     ];
 }
