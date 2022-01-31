@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * @method static create(array $array)
+ * @method static whereConfirmCode($code)
  */
 class User extends Authenticatable
 {
