@@ -40,4 +40,22 @@ class UsersController extends Controller
 
         return redirect('home');
     }
+
+    public function confirm($code)
+    {
+        $user = User::whereConfirmCode($code)->first();
+
+        if(! $user) {
+            flash("유효하지 않은 code 입니다");
+            return redirect('home');
+        }
+
+        $user->activated = 1;
+        $user->confirm_code = null;
+        $user->save();
+
+        auth()->login($user);
+
+        return redirect('home');
+    }
 }
