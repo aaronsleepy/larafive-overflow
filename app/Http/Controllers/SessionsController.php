@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class SessionsController extends Controller
@@ -27,5 +28,26 @@ class SessionsController extends Controller
     public function create()
     {
         return view('sessions.create');
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ]);
+
+        if (!auth()->attempt($request->only('email', 'password'), $request->has('remember'))) {
+            flash('로그인에 실패했습니다');
+            return back()->withInput();
+        }
+
+        if (!auth()->user()->activated) {
+            flash('가입이 인증되지 않았습니다');
+            auth()->logout();
+            return redirect('home');
+        }
+
+        return redirect()->intended('home');
     }
 }
