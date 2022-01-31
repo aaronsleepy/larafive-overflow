@@ -35,3 +35,18 @@ Route::get('/auth/confirm/{code}', [
     'uses' => 'UsersController@confirm'
 ]);
 
+/* 세션 과련 ***************************/
+Route::get('/auth/login', [
+   'as' => 'sessions.create',
+   'uses' => 'SessionsController@create'
+]);
+
+Route::post('/auth/login', [
+    'as' => 'sessions.store',
+    'uses' => 'SessionsController@store'
+]);
+
+Route::get('/auth/logout', [
+    'as' => 'sessions.destroy',
+    'uses' => 'SessionsController@destroy'
+]);
