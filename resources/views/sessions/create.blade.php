@@ -38,10 +38,10 @@
             <p class="text-center">
                 회원이 아니라면
             </p>
-            <p class="text-center">
-                <a href="{{ route('remind.create') }}"></a>
-                비밀번호를 잊으셨나요?
-            </p>
+{{--            <p class="text-center">--}}
+{{--                <a href="{{ route('remind.create') }}"></a>--}}
+{{--                비밀번호를 잊으셨나요?--}}
+{{--            </p>--}}
         </div>
     </form>
 @stop
