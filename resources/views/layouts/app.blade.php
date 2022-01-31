@@ -15,7 +15,7 @@
         @include('layouts.partial.navigation')
 
         <div class="container">
-            @include('flash::messgae')
+            @include('flash::message')
             @yield('content')
         </div>
 
