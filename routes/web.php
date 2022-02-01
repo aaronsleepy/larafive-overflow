@@ -50,3 +50,24 @@ Route::get('/auth/logout', [
     'as' => 'sessions.destroy',
     'uses' => 'SessionsController@destroy'
 ]);
+
+/* 패스워드 초기화 과련 ***************************/
+Route::get('/auth/remind', [
+   'as' => 'remind.create',
+   'uses' => 'PasswordsController@getRemind'
+]);
+
+Route::post('/auth/remind', [
+    'as' => 'remind.store',
+    'uses' => 'PasswordsController@postRemind'
+]);
+
+Route::get('/auth/reset/{token}', [
+    'as' => 'reset.create',
+    'uses' => 'PasswordsController@getReset'
+]);
+
+Route::post('/auth/reset', [
+    'as' => 'reset.store',
+    'uses' => 'PasswordsController@postReset'
+]);
