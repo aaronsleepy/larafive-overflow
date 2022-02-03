@@ -35,4 +35,9 @@ class PasswordsController extends Controller
 
         return redirect('home');
     }
+
+    public function getReset($token = null)
+    {
+        return view('passwords.reset', 'token');
+    }
 }
