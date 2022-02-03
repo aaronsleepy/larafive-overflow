@@ -7,7 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * @method static create(array $array)
- * @method static whereConfirmCode($code)
+ * @method static User whereConfirmCode($code)
+ * @method static User whereEmail(mixed $get)
  */
 class User extends Authenticatable
 {
