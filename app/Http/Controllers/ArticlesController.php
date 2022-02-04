@@ -19,7 +19,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = Article::get();
+        $articles = Article::latest()->paginate(2);
         $articles->load('user');
         return view('articles.index', compact('articles'));
     }
