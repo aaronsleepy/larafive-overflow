@@ -78,9 +78,14 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticlesRequest $request, $id)
     {
-        //
+        $article = Article::find($id);
+        $article->title = $request->get('title');
+        $article->content = $request->get('content');
+        $article->save();
+
+        return redirect(route('articles.show', $article->id));
     }
 
     /**
