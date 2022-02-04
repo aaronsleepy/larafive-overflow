@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static get()
+ * @method static latest()
  */
 class Article extends Model
 {
