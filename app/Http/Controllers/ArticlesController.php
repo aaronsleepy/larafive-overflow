@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Http\Requests\ArticlesRequest;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class ArticlesController extends Controller
 {
@@ -32,12 +37,14 @@ class ArticlesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ArticlesRequest $request
+     * @return Application|RedirectResponse|Redirector
      */
-    public function store(Request $request)
+    public function store(ArticlesRequest $request)
     {
-        //
+        $article = auth()->user()->articles()->create($request->all());
+
+        return redirect(route('articles.index'));
     }
 
     /**
