@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method static get()
+ */
 class Article extends Model
 {
     protected $fillable = [
